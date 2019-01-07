@@ -13,12 +13,16 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "clean": "rm -rf ./lib/* ",
+    "test": "jest --config jestconfig.json",
+    "build": "npm run clean && tsc",
     "start": "tsc -d false && node lib/index.js",
     "lint": "tslint -p tsconfig.json"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.12",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   },

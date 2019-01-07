@@ -12,9 +12,9 @@ import { Language, OrderComponent, OrderWrapper, PluralizableOrderComponent, Tra
 
 const randomFromArray = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
 
-const translate = <T>(map: TranslationMap<T>, lang: Language): T => map[lang];
+export const translate = <T>(map: TranslationMap<T>, lang: Language): T => map[lang];
 
-const pluralize = (amount: number, component: PluralizableOrderComponent) => {
+export const pluralize = (amount: number, component: PluralizableOrderComponent) => {
   if (amount === 1) {
     return typeof component === "string"
       ? component
