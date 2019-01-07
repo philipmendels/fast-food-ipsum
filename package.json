@@ -1,0 +1,24 @@
+{
+  "name": "fast-food-ipsum",
+  "version": "1.0.0",
+  "description": "Order your favorite combinatorial snacks as placeholder text!!!",
+  "contributors": [
+    "Philip Mendels <p.mendels@gmail.com>",
+    "Danny Eisenga <d.eisenga@gmail.com>"
+  ],
+  "license": "MIT",
+  "files": [
+    "lib/**/*"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "tsc -d false && node lib/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {}
+}
