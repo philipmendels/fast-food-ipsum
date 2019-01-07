@@ -2,43 +2,43 @@ import { TranslationMap } from "../models";
 
 export const numbers: TranslationMap<string>[] = [
   {
-    en: 'one',
-    nl: 'één',
+    en: "one",
+    nl: "één",
   },
   {
-    en: 'two',
-    nl: 'twee',
+    en: "two",
+    nl: "twee",
   },
   {
-    en: 'three',
-    nl: 'drie',
+    en: "three",
+    nl: "drie",
   },
   {
-    en: 'four',
-    nl: 'vier',
+    en: "four",
+    nl: "vier",
   },
   {
-    en: 'five',
-    nl: 'vijf',
+    en: "five",
+    nl: "vijf",
   },
   {
-    en: 'six',
-    nl: 'zes',
+    en: "six",
+    nl: "zes",
   },
   {
-    en: 'seven',
-    nl: 'zeven',
+    en: "seven",
+    nl: "zeven",
   },
   {
-    en: 'eight',
-    nl: 'acht',
+    en: "eight",
+    nl: "acht",
   },
   {
-    en: 'nine',
-    nl: 'negen',
+    en: "nine",
+    nl: "negen",
   },
   {
-    en: 'ten',
-    nl: 'tien',
-  }
+    en: "ten",
+    nl: "tien",
+  },
 ];

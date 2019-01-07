@@ -1,37 +1,37 @@
-import { TranslationMap, PluralizableOrderComponent } from "../models";
+import { PluralizableOrderComponent, TranslationMap } from "../models";
 
 export const containers: TranslationMap<PluralizableOrderComponent>[] = [
   {
-    nl: 'broodje',
-    en: 'bun',
+    nl: "broodje",
+    en: "bun",
   },
   {
     nl: {
-      singular: 'puntzak',
-      plural: 'puntzakken',
+      singular: "puntzak",
+      plural: "puntzakken",
     },
-    en: 'paper cone',
+    en: "paper cone",
   },
   {
     nl: {
-      singular: 'familiezak',
-      plural: 'familiezakken',
+      singular: "familiezak",
+      plural: "familiezakken",
     },
-    en: 'family bag',
+    en: "family bag",
   },
   {
-    nl: 'obesitasje',
-    en: 'obesibag',
+    nl: "obesitasje",
+    en: "obesibag",
   },
   {
-    nl: 'bakje',
+    nl: "bakje",
     en: {
-      singular: 'box',
-      plural: 'boxes',
+      singular: "box",
+      plural: "boxes",
     },
   },
   {
-    nl: 'schotel',
-    en: 'platter',
+    nl: "schotel",
+    en: "platter",
   },
 ];

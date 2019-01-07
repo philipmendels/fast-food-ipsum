@@ -1,18 +1,18 @@
-import { TranslationMap, PluralizableOrderComponent } from "../models";
+import { PluralizableOrderComponent, TranslationMap } from "../models";
 
 export const fries: TranslationMap<PluralizableOrderComponent>[] = [
   {
-    nl: 'frietje',
+    nl: "frietje",
     en: {
-      plural: 'fries',
-      singular: 'fries'
-    }
+      plural: "fries",
+      singular: "fries",
+    },
   },
   {
-    nl: 'patatje',
+    nl: "patatje",
     en: {
-      plural: 'fries',
-      singular: 'fries'
-    }
+      plural: "fries",
+      singular: "fries",
+    },
   },
 ];

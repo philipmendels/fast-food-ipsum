@@ -2,15 +2,15 @@ import { TranslationMap } from "../models";
 
 export const toppings: TranslationMap<string>[] = [
   {
-    nl: 'uitjes',
-    en: 'onions'
+    nl: "uitjes",
+    en: "onions",
   },
   {
-    nl: 'zout',
-    en: 'salt'
+    nl: "zout",
+    en: "salt",
   },
   {
-    nl: 'kaas',
-    en: 'cheese'
+    nl: "kaas",
+    en: "cheese",
   },
 ];

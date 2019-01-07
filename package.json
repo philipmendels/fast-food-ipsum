@@ -15,9 +15,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "tsc -d false && node lib/index.js"
+    "start": "tsc -d false && node lib/index.js",
+    "lint": "tslint -p tsconfig.json"
   },
   "devDependencies": {
+    "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   },
   "dependencies": {}

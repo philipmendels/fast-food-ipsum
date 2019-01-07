@@ -1,16 +1,16 @@
-export type PluralizableOrderComponent = string | PluralMap;
-
 export type OrderComponent = string | PluralizableOrderComponent;
 
-type PluralMap = {
+export type PluralizableOrderComponent = string | PluralMap;
+
+interface PluralMap {
   singular: string;
   plural: string;
-};
+}
 
-export type TranslationMap<T> = {
+export interface TranslationMap<T> {
   nl: T;
   en: T;
-};
+}
 
 export type Language = keyof TranslationMap<any>;
 

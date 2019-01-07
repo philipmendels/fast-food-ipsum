@@ -1,14 +1,14 @@
-import { containers } from "./content/containers";
-import { snacks } from "./content/snacks";
-import { sauces } from "./content/sauces";
-import { Language, TranslationMap, PluralizableOrderComponent, OrderComponent, OrderWrapper } from "./models";
-import { numbers } from "./content/numbers";
 import { adjectives } from "./content/adjectives";
-import { wrappers } from "./content/wrappers";
 import { concatenators } from "./content/concatenators";
+import { containers } from "./content/containers";
 import { fries } from "./content/fries";
+import { numbers } from "./content/numbers";
 import { prepositions } from "./content/prepositions";
+import { sauces } from "./content/sauces";
+import { snacks } from "./content/snacks";
 import { toppings } from "./content/toppings";
+import { wrappers } from "./content/wrappers";
+import { Language, OrderComponent, OrderWrapper, PluralizableOrderComponent, TranslationMap } from "./models";
 
 const randomFromArray = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
 
@@ -16,23 +16,21 @@ const translate = <T>(map: TranslationMap<T>, lang: Language): T => map[lang];
 
 const pluralize = (amount: number, component: PluralizableOrderComponent) => {
   if (amount === 1) {
-    return typeof component === 'string'
+    return typeof component === "string"
       ? component
       : component.singular;
   }
-  return typeof component === 'string'
-    ? component + 's'
+  return typeof component === "string"
+    ? component + "s"
     : component.plural;
 };
 
-const wrap = (order: string, wrapper: OrderWrapper): string =>
-  typeof wrapper === 'string'
-    ? `${wrapper} ${order}.`
-    : `${wrapper.start} ${order}${wrapper.end}`;
+const wrap = (orderString: string, wrapper: OrderWrapper): string =>
+  typeof wrapper === "string"
+    ? `${wrapper} ${orderString}.`
+    : `${wrapper.start} ${orderString}${wrapper.end}`;
 
-
-
-const orderPart = (lang: Language = 'nl'): string => {
+const orderPart = (lang: Language = "nl"): string => {
   const amount = Math.ceil(Math.random() * 10);
   const amountString = translate(numbers[amount - 1], lang);
 
@@ -43,34 +41,37 @@ const orderPart = (lang: Language = 'nl'): string => {
     : [
       pluralize(amount, translate(randomFromArray(containers), lang)),
       adjective,
-      randomFromArray(snacks)
-    ].join(' ');
+      randomFromArray(snacks),
+    ].join(" ");
 
   const sauce = randomFromArray(sauces);
   const saucePrepositionStr = translate(randomFromArray(prepositions), lang);
-  const sauceString = typeof sauce === 'string'
-    ? saucePrepositionStr + ' ' + sauce
+  const sauceString = typeof sauce === "string"
+    ? saucePrepositionStr + " " + sauce
     : sauce.withoutProposition
       ? sauce.name
-      : saucePrepositionStr + ' ' + sauce.name;
+      : saucePrepositionStr + " " + sauce.name;
 
   const orderList: string[] = [
     amountString,
     friesOrContainer,
     sauceString,
     translate(randomFromArray(prepositions), lang),
-    translate(randomFromArray(toppings), lang)
+    translate(randomFromArray(toppings), lang),
   ];
 
-  return orderList.join(' ');
+  return orderList.join(" ");
 };
 
-export const order = (lang: Language = 'nl'): string => {
+export const order = (lang: Language = "nl"): string => {
 
   const orderLength = 5;
-  const order = new Array<string>(orderLength - 1).fill('').reduce((prev, curr, index) => prev + ' ' + translate(randomFromArray(concatenators), lang) + ' ' + orderPart(lang), orderPart(lang));
+  const orderString = new Array<string>(orderLength - 1).fill("").reduce(
+    (prev, curr, index) => prev + " " + translate(randomFromArray(concatenators), lang) + " " + orderPart(lang),
+    orderPart(lang),
+  );
 
-  return wrap(order, translate(randomFromArray(wrappers), lang));
-}
+  return wrap(orderString, translate(randomFromArray(wrappers), lang));
+};
 
 new Array(1).fill(0).forEach(() => console.log(order()));
