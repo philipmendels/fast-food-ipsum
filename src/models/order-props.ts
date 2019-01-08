@@ -22,6 +22,8 @@ export interface SnackOrderProps {
   amount: number;
 }
 
+export type SnackOrFriesOrderProps = Omit<SnackOrderProps & FriesOrderProps, "amount">;
+
 export interface SauceOrderProps {
   lang: Language;
   prepositions: typeof prepositions;

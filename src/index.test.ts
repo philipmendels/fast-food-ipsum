@@ -11,7 +11,7 @@ import { sauces } from "./content/sauces";
 import { snacks } from "./content/snacks";
 import { toppings } from "./content/toppings";
 import { wrappers } from "./content/wrappers";
-import { AllOrderProps, FriesOrderProps, SnackOrderProps } from "./models/order-props";
+import { AllOrderProps, FriesOrderProps, SnackOrderProps, SnackOrFriesOrderProps } from "./models/order-props";
 import { randomFromArray, translate, wrap } from "./util";
 
 test("Order fries", () => {
@@ -32,20 +32,22 @@ test("Order snack", () => {
   })).toEqual("emmers rauwe kroket");
 });
 
-const snackAndFriesProps: SnackOrderProps & FriesOrderProps = {
+const snackAndFriesProps: SnackOrFriesOrderProps = {
   lang: "nl",
   fries: [{ nl: "patatje", en: "fries" }],
   containers: [{ nl: "emmer", en: "bucket" }],
   adjectives: [{ nl: "rauwe", en: "raw" }],
   snacks: ["kroket"],
-  amount: 2,
 };
 
-test("Order fries or snack", () => {
+test("Order fries or snack: snack", () => {
   Math.random = () => 0.8;
-  expect(orderFriesOrSnack(snackAndFriesProps)).toEqual("emmers rauwe kroket");
+  expect(orderFriesOrSnack(snackAndFriesProps)).toEqual("acht emmers rauwe kroket");
+});
+
+test("Order fries or snack: fries", () => {
   Math.random = () => 0.6;
-  expect(orderFriesOrSnack(snackAndFriesProps)).toEqual("patatjes");
+  expect(orderFriesOrSnack(snackAndFriesProps)).toEqual("zes patatjes");
 });
 
 test("Order sauce with preposition", () => {

@@ -11,18 +11,21 @@ import { wrappers } from "./content/wrappers";
 import { OrderOptions } from "./models/models";
 import {
   AllOrderProps, FriesOrderProps, OrderMultipleProps,
-  SauceOrderProps, SnackOrderProps, ToppingOrderProps,
+  SauceOrderProps, SnackOrderProps, SnackOrFriesOrderProps, ToppingOrderProps,
 } from "./models/order-props";
 import { pluralize, randomFromArray, translate, wrap } from "./util";
 
-export const orderFriesOrSnack = (props: SnackOrderProps & FriesOrderProps): string => {
+export const orderFriesOrSnack = (props: SnackOrFriesOrderProps ): string => {
+  const amount = Math.ceil(Math.random() * 10);
+  const amountString = translate(numbers[amount - 1], props.lang);
   const whatToOrder = Math.random() > 0.7 ? "snack" : "fries";
-  const { amount, lang } = props;
-  return whatToOrder === "fries"
+  const { lang } = props;
+  const orderString = whatToOrder === "fries"
     ? orderFries({ lang, amount, fries: props.fries })
     : orderSnack({
       lang, amount, containers: props.containers, adjectives: props.adjectives, snacks: props.snacks,
     });
+  return `${amountString} ${orderString}`;
 };
 
 export const orderFries = (props: FriesOrderProps): string =>
@@ -51,13 +54,10 @@ export const orderTopping = (props: ToppingOrderProps): string => [
 ].join(" ");
 
 export const orderAll = (props: AllOrderProps): string => {
-  const amount = Math.ceil(Math.random() * 10);
-  const amountString = translate(numbers[amount - 1], props.lang);
   const { lang } = props;
   const orderList: string[] = [
-    amountString,
     orderFriesOrSnack({
-      lang, amount, fries: props.fries, snacks: props.snacks,
+      lang, fries: props.fries, snacks: props.snacks,
       adjectives: props.adjectives, containers: props.containers,
     }),
     orderSauce({ lang, prepositions: props.prepositions, sauces: props.sauces }),
