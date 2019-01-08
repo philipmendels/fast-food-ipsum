@@ -8,29 +8,10 @@ import { sauces } from "./content/sauces";
 import { snacks } from "./content/snacks";
 import { toppings } from "./content/toppings";
 import { wrappers } from "./content/wrappers";
-import { Language, OrderComponent, OrderWrapper, PluralizableOrderComponent, TranslationMap } from "./models";
+import { Language } from "./models";
+import { pluralize, randomFromArray, translate, wrap } from "./util";
 
-const randomFromArray = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
-
-export const translate = <T>(map: TranslationMap<T>, lang: Language): T => map[lang];
-
-export const pluralize = (amount: number, component: PluralizableOrderComponent) => {
-  if (amount === 1) {
-    return typeof component === "string"
-      ? component
-      : component.singular;
-  }
-  return typeof component === "string"
-    ? component + "s"
-    : component.plural;
-};
-
-const wrap = (orderString: string, wrapper: OrderWrapper): string =>
-  typeof wrapper === "string"
-    ? `${wrapper} ${orderString}.`
-    : `${wrapper.start} ${orderString}${wrapper.end}`;
-
-const orderPart = (lang: Language = "nl"): string => {
+const orderPart = (lang: Language): string => {
   const amount = Math.ceil(Math.random() * 10);
   const amountString = translate(numbers[amount - 1], lang);
 
@@ -73,5 +54,3 @@ export const order = (lang: Language = "nl"): string => {
 
   return wrap(orderString, translate(randomFromArray(wrappers), lang));
 };
-
-new Array(1).fill(0).forEach(() => console.log(order()));

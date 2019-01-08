@@ -15,8 +15,8 @@
   "scripts": {
     "clean": "rm -rf ./lib/* ",
     "test": "jest --config jestconfig.json",
-    "build": "npm run clean && tsc",
-    "start": "tsc -d false && node lib/index.js",
+    "build": "npm run clean && tsc -p ./tsconfig.build.json",
+    "start": "tsc -d false && node lib/example/example.js",
     "lint": "tslint -p tsconfig.json"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
-import { pluralize, translate } from ".";
 import { PluralizableOrderComponent } from "./models";
+import { pluralize, translate } from "./util";
 
 test("translate", () => {
   expect(translate({
