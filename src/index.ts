@@ -70,9 +70,9 @@ export const orderMultiple = (props: OrderMultipleProps): string =>
   new Array(props.amountOfOrders - 1).fill(0).reduce(
     (prev) =>
       prev + " " +
-      translate(randomFromArray(props.concatenators), props.allOrderProps.lang) + " " +
-      orderAll(props.allOrderProps)
-    , orderAll(props.allOrderProps),
+      translate(randomFromArray(props.concatenators), props.lang) + " " +
+      props.orderFunction()
+    , props.orderFunction(),
   );
 
 export const defaultOptions: OrderOptions = {
@@ -87,7 +87,7 @@ export const mergeOptions = (defaults: OrderOptions, options?: Partial<OrderOpti
 
 export const order = (options?: Partial<OrderOptions>): string => {
   const mergedOptions = mergeOptions(defaultOptions, options);
-  const allOrderProps: AllOrderProps = {
+  const orderFunction = () => orderAll({
     lang: mergedOptions.lang,
     fries,
     containers,
@@ -96,11 +96,12 @@ export const order = (options?: Partial<OrderOptions>): string => {
     prepositions,
     sauces,
     toppings,
-  };
+  });
   const multipleOrders = orderMultiple({
-    allOrderProps,
+    lang: mergedOptions.lang,
     concatenators,
     amountOfOrders: mergedOptions.amountOfOrders,
+    orderFunction,
   });
   const wrapper = translate(randomFromArray(wrappers), mergedOptions.lang);
   return wrap(multipleOrders, wrapper);

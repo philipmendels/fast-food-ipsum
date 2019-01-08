@@ -116,14 +116,16 @@ test("Order all", () => {
 });
 
 test("Order multiple 1", () => {
+  const orderFunction = () => orderAll(allOrderProps);
   Math.random = () => 0.8;
-  expect(orderMultiple({ allOrderProps, amountOfOrders: 1, concatenators: [{ nl: "en", en: "and" }] }))
+  expect(orderMultiple({ orderFunction, amountOfOrders: 1, concatenators: [{ nl: "en", en: "and" }], lang: "en" }))
     .toEqual(expected);
 });
 
 test("Order multiple 2", () => {
+  const orderFunction = () => orderAll(allOrderProps);
   Math.random = () => 0.8;
-  expect(orderMultiple({ allOrderProps, amountOfOrders: 2, concatenators: [{ nl: "en", en: "and" }] }))
+  expect(orderMultiple({ orderFunction, amountOfOrders: 2, concatenators: [{ nl: "en", en: "and" }], lang: "en" }))
     .toEqual(`${expected} and ${expected}`);
 });
 
@@ -138,12 +140,12 @@ test("Merge options with empty options", () => {
 });
 
 test("Merge options with override", () => {
-  expect(mergeOptions({ lang: "nl", amountOfOrders: 1}, { lang: "en" }))
+  expect(mergeOptions({ lang: "nl", amountOfOrders: 1 }, { lang: "en" }))
     .toEqual({ lang: "en", amountOfOrders: 1 });
 });
 
 test("order", () => {
-  const aop: AllOrderProps = {
+  const orderFunction = () => orderAll({
     lang: "nl",
     fries,
     containers,
@@ -152,11 +154,12 @@ test("order", () => {
     prepositions,
     sauces,
     toppings,
-  };
+  });
   const multipleOrders = orderMultiple({
-    allOrderProps: aop,
+    orderFunction,
     concatenators,
     amountOfOrders: 1,
+    lang: "nl",
   });
   const wrapper = translate(randomFromArray(wrappers), "nl");
   const wrapped = wrap(multipleOrders, wrapper);

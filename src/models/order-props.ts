@@ -42,7 +42,8 @@ export type AllOrderProps = Omit<
 >;
 
 export interface OrderMultipleProps {
-  allOrderProps: AllOrderProps;
+  lang: Language;
   amountOfOrders: number;
   concatenators: typeof concatenators;
+  orderFunction: () => string;
 }
