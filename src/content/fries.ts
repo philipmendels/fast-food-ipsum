@@ -1,4 +1,4 @@
-import { PluralizableOrderComponent, TranslationMap } from "../models";
+import { PluralizableOrderComponent, TranslationMap } from "../models/models";
 
 export const fries: TranslationMap<PluralizableOrderComponent>[] = [
   {

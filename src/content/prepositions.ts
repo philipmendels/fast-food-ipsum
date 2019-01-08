@@ -1,4 +1,4 @@
-import { TranslationMap } from "../models";
+import { TranslationMap } from "../models/models";
 
 export const prepositions: TranslationMap<string>[] = [
   {

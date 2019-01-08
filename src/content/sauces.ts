@@ -1,4 +1,4 @@
-import { Sauce } from "../models";
+import { Sauce } from "../models/models";
 
 export const sauces: Sauce[] = [
   "appelmoes",

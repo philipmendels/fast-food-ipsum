@@ -23,3 +23,10 @@ export type Sauce = string | {
   name: string,
   withoutProposition: boolean,
 };
+
+export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+
+export interface OrderOptions {
+  lang: Language;
+  amountOfOrders: number;
+}

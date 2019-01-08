@@ -4,5 +4,6 @@
   },
   "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(tsx?)$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-  "collectCoverage": true
+  "collectCoverage": true,
+  "collectCoverageFrom": ["src/**/*", "!src/content/**/*", "!src/models/**/*", "!src/example/**/*"]
 }

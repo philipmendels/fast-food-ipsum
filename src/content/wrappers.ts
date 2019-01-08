@@ -1,4 +1,4 @@
-import { OrderWrapper, TranslationMap } from "../models";
+import { OrderWrapper, TranslationMap } from "../models/models";
 
 export const wrappers: TranslationMap<OrderWrapper>[] = [
   {

@@ -1,4 +1,4 @@
-import { Language, OrderWrapper, PluralizableOrderComponent, TranslationMap } from "./models";
+import { Language, OrderWrapper, PluralizableOrderComponent, TranslationMap } from "./models/models";
 
 export const translate = <T>(map: TranslationMap<T>, lang: Language): T => map[lang];
 
