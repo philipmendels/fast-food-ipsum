@@ -1,5 +1,4 @@
 export const snacks = [
-  "friet",
   "smulrol",
   "sitostick",
   "chickenwings",
@@ -27,7 +26,8 @@ export const snacks = [
   "lekkerbek",
   "viandel",
   "smulrol",
-  "lihanboutje",
+  // no support yet for adjectives before words ending on -tje
+  // "lihanboutje",
   "pikanto",
   "sjaslick",
   "braadworst",

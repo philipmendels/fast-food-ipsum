@@ -1,3 +1,3 @@
 import { order } from "..";
 
-new Array(1).fill(0).forEach(() => console.log(order({lang: "en"})));
+new Array(10).fill(0).forEach(() => console.log(order({lang: "nl", amountOfOrders: 1})));

@@ -19,11 +19,6 @@ export type OrderWrapper = string | {
   end: string,
 };
 
-export type Sauce = string | {
-  name: string,
-  withoutProposition: boolean,
-};
-
 export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 export interface OrderOptions {

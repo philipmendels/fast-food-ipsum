@@ -1,5 +1,5 @@
 import {
-  mergeOptions, order, orderAll, orderFries, orderFriesOrSnack,
+  mergeOptions, order, orderAll, orderFries,
   orderMultiple, orderSauce, orderSnack, orderTopping,
 } from ".";
 import { adjectives } from "./content/adjectives";
@@ -8,69 +8,35 @@ import { containers } from "./content/containers";
 import { fries } from "./content/fries";
 import { prepositions } from "./content/prepositions";
 import { sauces } from "./content/sauces";
+import { sizes } from "./content/sizes";
 import { snacks } from "./content/snacks";
 import { toppings } from "./content/toppings";
 import { wrappers } from "./content/wrappers";
-import { AllOrderProps, FriesOrderProps, SnackOrderProps, SnackOrFriesOrderProps } from "./models/order-props";
+import { AllOrderProps } from "./models/order-props";
 import { randomFromArray, translate, wrap } from "./util";
 
 test("Order fries", () => {
+  Math.random = () => 0;
   expect(orderFries({
     lang: "nl",
-    fries: [{ nl: "patatje", en: "fries" }],
-    amount: 2,
-  })).toEqual("patatjes");
+    sizes: [{ nl: "grote", en: "large"}],
+    fries: [{ nl: "patat", en: "fries" }],
+  })).toEqual("grote patat");
 });
 
 test("Order snack", () => {
+  Math.random = () => 0;
   expect(orderSnack({
     lang: "nl",
     containers: [{ nl: "emmer", en: "bucket" }],
     adjectives: [{ nl: "rauwe", en: "raw" }],
     snacks: ["kroket"],
-    amount: 2,
-  })).toEqual("emmers rauwe kroket");
+  })).toEqual("emmer rauwe kroket");
 });
 
-const snackAndFriesProps: SnackOrFriesOrderProps = {
-  lang: "nl",
-  fries: [{ nl: "patatje", en: "fries" }],
-  containers: [{ nl: "emmer", en: "bucket" }],
-  adjectives: [{ nl: "rauwe", en: "raw" }],
-  snacks: ["kroket"],
-};
-
-test("Order fries or snack: snack", () => {
-  Math.random = () => 0.8;
-  expect(orderFriesOrSnack(snackAndFriesProps)).toEqual("acht emmers rauwe kroket");
-});
-
-test("Order fries or snack: fries", () => {
-  Math.random = () => 0.6;
-  expect(orderFriesOrSnack(snackAndFriesProps)).toEqual("zes patatjes");
-});
-
-test("Order sauce with preposition", () => {
+test("Order sauce", () => {
   expect(orderSauce({
-    lang: "en",
-    prepositions: [{ nl: "met extra", en: "with extra" }],
     sauces: ["mayonaise"],
-  })).toEqual("with extra mayonaise");
-});
-
-test("Order sauce as object with preposition", () => {
-  expect(orderSauce({
-    lang: "en",
-    prepositions: [{ nl: "met extra", en: "with extra" }],
-    sauces: [{ name: "mayonaise", withoutProposition: false }],
-  })).toEqual("with extra mayonaise");
-});
-
-test("Order sauce without preposition", () => {
-  expect(orderSauce({
-    lang: "en",
-    prepositions: [{ nl: "met extra", en: "with extra" }],
-    sauces: [{ name: "mayonaise", withoutProposition: true }],
   })).toEqual("mayonaise");
 });
 
@@ -84,25 +50,17 @@ test("Order topping", () => {
 
 test("Order all", () => {
   Math.random = () => 0.8;
-  expect(orderAll({
-    lang: "en",
-    containers: snackAndFriesProps.containers,
-    adjectives: snackAndFriesProps.adjectives,
-    snacks: snackAndFriesProps.snacks,
-    fries: snackAndFriesProps.fries,
-    sauces: [{ name: "mayonaise", withoutProposition: true }],
-    prepositions: [{ nl: "met extra", en: "with extra" }],
-    toppings: [{ nl: "hagelslag", en: "chocolate sprinkles" }],
-  })).toEqual("eight buckets raw kroket mayonaise with extra chocolate sprinkles");
+  expect(orderAll(allOrderProps)).toEqual("eight buckets raw kroket mayonaise with extra chocolate sprinkles");
 });
 
 const allOrderProps: AllOrderProps = {
   lang: "en",
-  containers: snackAndFriesProps.containers,
-  adjectives: snackAndFriesProps.adjectives,
-  snacks: snackAndFriesProps.snacks,
-  fries: snackAndFriesProps.fries,
-  sauces: [{ name: "mayonaise", withoutProposition: true }],
+  sizes: [{ nl: "grote", en: "large"}],
+  fries: [{ nl: "patatje", en: "fries" }],
+  containers: [{ nl: "emmer", en: "bucket" }],
+  adjectives: [{ nl: "rauwe", en: "raw" }],
+  snacks: ["kroket"],
+  sauces: ["mayonaise"],
   prepositions: [{ nl: "met extra", en: "with extra" }],
   toppings: [{ nl: "hagelslag", en: "chocolate sprinkles" }],
 };
@@ -147,6 +105,7 @@ test("Merge options with override", () => {
 test("order", () => {
   const orderFunction = () => orderAll({
     lang: "nl",
+    sizes,
     fries,
     containers,
     adjectives,

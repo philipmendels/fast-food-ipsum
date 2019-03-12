@@ -4,14 +4,15 @@ import { containers } from "../content/containers";
 import { fries } from "../content/fries";
 import { prepositions } from "../content/prepositions";
 import { sauces } from "../content/sauces";
+import { sizes } from "../content/sizes";
 import { snacks } from "../content/snacks";
 import { toppings } from "../content/toppings";
 import { Language, Omit } from "./models";
 
 export interface FriesOrderProps {
   lang: Language;
+  sizes: typeof sizes;
   fries: typeof fries;
-  amount: number;
 }
 
 export interface SnackOrderProps {
@@ -19,14 +20,9 @@ export interface SnackOrderProps {
   containers: typeof containers;
   adjectives: typeof adjectives;
   snacks: typeof snacks;
-  amount: number;
 }
 
-export type SnackOrFriesOrderProps = Omit<SnackOrderProps & FriesOrderProps, "amount">;
-
 export interface SauceOrderProps {
-  lang: Language;
-  prepositions: typeof prepositions;
   sauces: typeof sauces;
 }
 

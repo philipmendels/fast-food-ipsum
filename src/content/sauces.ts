@@ -1,6 +1,4 @@
-import { Sauce } from "../models/models";
-
-export const sauces: Sauce[] = [
+export const sauces: string[] = [
   "appelmoes",
   "bbq-saus",
   "chilisaus",
@@ -11,16 +9,10 @@ export const sauces: Sauce[] = [
   "mad-saus",
   "mayonaise",
   "mosterd",
-  {
-    name: "oorlog",
-    withoutProposition: true,
-  },
+  "oorlog",
   "piccalilly",
   "pindasaus",
   "sambal",
   "satésaus",
-  {
-    name: "speciaal",
-    withoutProposition: true,
-  },
+  "speciaal",
 ];
