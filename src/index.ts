@@ -33,8 +33,9 @@ export const orderSnack = (props: SnackOrderProps): string => {
 };
 
 export const getAmount = (lang: Language) => {
-  const nr = Math.ceil(Math.random() * 10);
-  const str = translate(numbers[nr - 1], lang);
+  const index = Math.floor(Math.random() * 10);
+  const str = translate(numbers[index], lang);
+  const nr = index + 1;
   return {
     nr,
     str,

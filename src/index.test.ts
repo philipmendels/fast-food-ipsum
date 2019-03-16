@@ -1,6 +1,6 @@
 import {
-  mergeOptions, order, orderAll, orderFries,
-  orderMultiple, orderSauce, orderSnack, orderTopping,
+  getAmount, mergeOptions, order, orderAll,
+  orderFries, orderMultiple, orderSauce, orderSnack, orderTopping,
 } from ".";
 import { adjectives } from "./content/adjectives";
 import { concatenators } from "./content/concatenators";
@@ -15,23 +15,33 @@ import { wrappers } from "./content/wrappers";
 import { AllOrderProps } from "./models/order-props";
 import { randomFromArray, translate, wrap } from "./util";
 
+test("get amount 1", () => {
+  Math.random = () => 0;
+  expect(getAmount("en")).toEqual({nr: 1, str: "one"});
+});
+
+test("get amount 10", () => {
+  Math.random = () => 0.999;
+  expect(getAmount("en")).toEqual({nr: 10, str: "ten"});
+});
+
 test("Order fries", () => {
   Math.random = () => 0;
   expect(orderFries({
     lang: "nl",
     sizes: [{ nl: "grote", en: "large"}],
     fries: [{ nl: "patat", en: "fries" }],
-  })).toEqual("grote patat");
+  })).toEqual("één grote patat");
 });
 
 test("Order snack", () => {
   Math.random = () => 0;
   expect(orderSnack({
-    lang: "nl",
+    lang: "en",
     containers: [{ nl: "emmer", en: "bucket" }],
     adjectives: [{ nl: "rauwe", en: "raw" }],
     snacks: ["kroket"],
-  })).toEqual("emmer rauwe kroket");
+  })).toEqual("one bucket raw kroket");
 });
 
 test("Order sauce", () => {
@@ -48,11 +58,6 @@ test("Order topping", () => {
   })).toEqual("with extra chocolate sprinkles");
 });
 
-test("Order all", () => {
-  Math.random = () => 0.8;
-  expect(orderAll(allOrderProps)).toEqual("eight buckets raw kroket mayonaise with extra chocolate sprinkles");
-});
-
 const allOrderProps: AllOrderProps = {
   lang: "en",
   sizes: [{ nl: "grote", en: "large"}],
@@ -65,7 +70,7 @@ const allOrderProps: AllOrderProps = {
   toppings: [{ nl: "hagelslag", en: "chocolate sprinkles" }],
 };
 
-const expected = "eight buckets raw kroket mayonaise with extra chocolate sprinkles";
+const expected = "nine large fries mayonaise and nine buckets raw kroket with extra chocolate sprinkles";
 
 test("Order all", () => {
   Math.random = () => 0.8;
