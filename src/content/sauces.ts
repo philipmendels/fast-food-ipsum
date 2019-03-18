@@ -15,4 +15,5 @@ export const sauces: string[] = [
   "sambal",
   "satésaus",
   "speciaal",
+  "kapsalon",
 ];

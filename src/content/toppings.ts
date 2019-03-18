@@ -9,8 +9,4 @@ export const toppings: TranslationMap<string>[] = [
     nl: "zout",
     en: "salt",
   },
-  {
-    nl: "kaas",
-    en: "cheese",
-  },
 ];

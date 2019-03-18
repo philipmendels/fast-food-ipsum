@@ -11,35 +11,52 @@ import { Language, Omit } from "./models";
 
 export interface FriesOrderProps {
   lang: Language;
-  sizes: typeof sizes;
-  fries: typeof fries;
+  content: {
+    sizes: typeof sizes;
+    fries: typeof fries;
+  };
 }
 
 export interface SnackOrderProps {
   lang: Language;
-  containers: typeof containers;
-  adjectives: typeof adjectives;
-  snacks: typeof snacks;
+  content: {
+    containers: typeof containers;
+    adjectives: typeof adjectives;
+    snacks: typeof snacks;
+  };
 }
 
 export interface SauceOrderProps {
-  sauces: typeof sauces;
+  content: {
+    sauces: typeof sauces;
+  };
 }
 
 export interface ToppingOrderProps {
   lang: Language;
-  prepositions: typeof prepositions;
-  toppings: typeof toppings;
+  content: {
+    prepositions: typeof prepositions;
+    toppings: typeof toppings;
+  };
 }
 
-export type AllOrderProps = Omit<
-  FriesOrderProps & SnackOrderProps & SauceOrderProps & ToppingOrderProps,
-  "amount"
->;
+export interface AllOrderProps {
+  lang: Language;
+  content: FriesOrderProps["content"] & SnackOrderProps["content"] &
+  SauceOrderProps["content"] & ToppingOrderProps["content"];
+}
 
 export interface OrderMultipleProps {
   lang: Language;
   amountOfOrders: number;
   concatenators: typeof concatenators;
   orderFunction: () => string;
+}
+
+export interface OrderAllMultipleProps {
+  lang: Language;
+  amountOfOrders: number;
+  content: {
+    concatenators: typeof concatenators;
+  } & AllOrderProps["content"];
 }

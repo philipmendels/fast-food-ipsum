@@ -1,5 +1,8 @@
 import { PluralizableOrderComponent, TranslationMap } from "../models/models";
 
+/**
+ * For plural +s is default, so in that case the singular string suffices (no object required).
+ */
 export const containers: TranslationMap<PluralizableOrderComponent>[] = [
   {
     nl: "broodje",

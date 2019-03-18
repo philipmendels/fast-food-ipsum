@@ -25,4 +25,33 @@ export const adjectives: TranslationMap<string>[] = [
     nl: "vetarme",
     en: "low-fat",
   },
+  {
+    nl: "rauwe",
+    en: "raw",
+  },
+  {
+    nl: "kort gebakken",
+    en: "rare",
+  },
+  {
+    nl: "goed doorbakken",
+    en: "well done",
+  },
+  {
+    nl: "extra knapperige",
+    en: "extra crispy",
+  },
+  {
+    nl: "aangebrande",
+    en: "scorched",
+  },
+  {
+    nl: "gestoofde",
+    en: "stewed",
+  },
+  {
+    nl: "volvette",
+    en: "full fat ",
+  },
+
 ];

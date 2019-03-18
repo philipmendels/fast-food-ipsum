@@ -1,3 +1,3 @@
-import { order } from "..";
+import { orderAllMultiple } from "..";
 
-new Array(10).fill(0).forEach(() => console.log(order({lang: "nl", amountOfOrders: 1})));
+new Array(1).fill(0).forEach(() => console.log(orderAllMultiple({lang: "nl", amountOfOrders: 5})));

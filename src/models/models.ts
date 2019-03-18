@@ -21,7 +21,6 @@ export type OrderWrapper = string | {
 
 export type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
-export interface OrderOptions {
-  lang: Language;
-  amountOfOrders: number;
-}
+export type PartialOptions<T> = {
+  [P in keyof T]?: P extends "content" ? Partial<T[P]> : T[P];
+};
