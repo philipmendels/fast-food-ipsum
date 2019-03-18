@@ -31,7 +31,7 @@ export const adjectives: TranslationMap<string>[] = [
   },
   {
     nl: "kort gebakken",
-    en: "rare",
+    en: "medium-rare",
   },
   {
     nl: "goed doorbakken",
@@ -51,7 +51,7 @@ export const adjectives: TranslationMap<string>[] = [
   },
   {
     nl: "volvette",
-    en: "full fat ",
+    en: "full-fat",
   },
 
 ];

@@ -10,19 +10,23 @@ import { toppings } from "./content/toppings";
 import { wrappers } from "./content/wrappers";
 import { Language, PartialOptions } from "./models/models";
 import {
-  AllOrderProps, FriesOrderProps,
-  OrderAllMultipleProps, SauceOrderProps, SnackOrderProps, ToppingOrderProps,
+  AllOrderProps, FriesOrderProps, SauceOrderProps, SnackOrderProps, ToppingOrderProps,
 } from "./models/order-props";
-import { getAll, getAllMultiple, getFries, getSauce, getSnack, getTopping } from "./partial-orders";
+import { getAll, getFries, getSauce, getSnack, getTopping } from "./partial-orders";
 
 // defaults:
 const lang: Language = "nl";
+const makeSentence = true;
 const amountOfOrders = 1;
 
 export const orderFries = (options?: PartialOptions<FriesOrderProps>): string => getFries({
   lang,
+  amountOfOrders,
+  makeSentence,
   ...options,
   content: {
+    wrappers,
+    concatenators,
     fries,
     sizes,
     ...(options && options.content),
@@ -31,8 +35,12 @@ export const orderFries = (options?: PartialOptions<FriesOrderProps>): string =>
 
 export const orderSnack = (options?: PartialOptions<SnackOrderProps>): string => getSnack({
   lang,
+  amountOfOrders,
+  makeSentence,
   ...options,
   content: {
+    wrappers,
+    concatenators,
     adjectives,
     containers,
     snacks,
@@ -41,8 +49,13 @@ export const orderSnack = (options?: PartialOptions<SnackOrderProps>): string =>
 });
 
 export const orderSauce = (options?: PartialOptions<SauceOrderProps>): string => getSauce({
+  lang,
+  amountOfOrders,
+  makeSentence,
   ...options,
   content: {
+    wrappers,
+    concatenators,
     sauces,
     ...(options && options.content),
   },
@@ -60,25 +73,11 @@ export const orderTopping = (options?: PartialOptions<ToppingOrderProps>): strin
 
 export const orderAll = (options?: PartialOptions<AllOrderProps>): string => getAll({
   lang,
-  ...options,
-  content: {
-    adjectives,
-    containers,
-    fries,
-    prepositions,
-    sauces,
-    sizes,
-    snacks,
-    toppings,
-    ...(options && options.content),
-  },
-});
-
-export const orderAllMultiple = (options?: PartialOptions<OrderAllMultipleProps>): string => getAllMultiple({
-  lang,
   amountOfOrders,
+  makeSentence,
   ...options,
   content: {
+    wrappers,
     concatenators,
     adjectives,
     containers,
